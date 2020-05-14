@@ -1,0 +1,76 @@
+<!DOCTYPE>
+<?php
+error_reporting('0');
+session_start();
+include_once ('includes/db.php');
+if(!isset($_SESSION['admin_name'])){
+echo "<script>window.open('admin_login.php? not_adminstrator = You are not an administartor.','_self')</script>";
+}
+else
+{
+?>
+<!DOCTYPE>
+<html>
+    <head> 
+        <title> South Asian Handicrafts </title>
+		
+		
+		
+    </head>
+<body>
+
+  
+    
+
+  
+   
+	   <form action="admin_register.php" method="post" enctype="multipart/form-data">
+	   
+	   <table align="center" width="750">
+	   <tr align="center">
+	    <td colspan="6"><h2>Create an Admin Account</h2></td>
+	   
+	   </tr>
+	   <tr>
+	   <td align="right">Admin Name:</td>
+	   <td><input type="text" name="e_name" required/></td>
+	   </tr>
+	   <tr>
+	   <td align="right">Admin Email:</td>
+	   <td><input type="text" name="e_email" required/></td>
+	   </tr>
+	   <tr>
+	   <td align="right"> Admin Password</td>
+	   <td><input type="password" name="e_pass" required/></td>
+	   </tr>
+	   <tr>
+	   <td align="right">Admin Contact:</td>
+	   <td><input type="text" name="e_contact"required/></td>
+	   </tr>
+	   <tr align="center">
+	   <td colspan="6"><input type="submit" name="register" value="Create Account"/></td>
+	   </tr>
+	   </table>
+	   </form>
+
+</body>
+</html>
+<?php
+ if(isset($_POST['register'])){
+ 
+  $e_name = $_POST['e_name'];
+  $e_email = $_POST['e_email'];
+  $e_pass = $_POST['e_pass'];
+  $e_pass = md5($e_pass);
+  $e_contact = $_POST['e_contact'];
+  $insert_e = "insert into administrator(admin_name,admin_email,admin_pass,admin_contact) values('$e_name','$e_email','$e_pass','$e_contact')";
+
+$run_e = mysqli_query($con,$insert_e);
+if($run_e){
+echo "<script>alert('registeration successful')</script>";
+echo "<script>window.open('index.php','_self')</script>";
+}
+
+ }
+ ?>
+<?php } ?>
