@@ -1,7 +1,7 @@
 <table width="795" align="center" bgcolor="white">
 
 <tr align="center">
-<td colspan="15"><h2>Products</h2></td>
+<td colspan="6"><h2>Products</h2></td>
 </tr>
 
 <tr align="center" bgcolor="white">
@@ -15,11 +15,6 @@
 </tr>
 <?php
 include_once ('db.php');
-if (mysqli_connect_errno())
-{
-    echo "Failed to connect to MYSQL: " .mysqli_connect_error();
-}
-
 $get_pro ="select * from products";
 $run_pro = mysqli_query($con, $get_pro);
 $i = 0;
@@ -37,7 +32,7 @@ $i++;
 <tr align="center">
 <td><?php echo $i;?></td>
 <td><?php echo $pro_title;?></td>
-<td><img src="../admin_area/product_images/<?php echo $pro_image;?>" width="60" height="60"/></td>
+<td><img src="/admin_area/product_images/<?php echo $pro_image;?>" width="60" height="60"/></td>
 <td><?php echo "$".$pro_price;?></td>
 <td><?php echo $pro_quantity;?></td>
 <td><a href="index.php?edit_pro=<?php echo $pro_id; ?>">Edit</a></td>
